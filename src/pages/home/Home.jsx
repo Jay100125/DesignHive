@@ -5,6 +5,8 @@ import TrustedBy from '../../components/trustedby/TrustedBy'
 import Slide from '../../components/slide/Slide'
 import { cards } from './../../data'
 import CatCard from '../../components/catCard/CatCard'
+import { projects } from './../../data'
+import ProjectCard from '../../components/projectCard/ProjectCard'
 
 const Home = () => {
   return (
@@ -38,7 +40,7 @@ const Home = () => {
             </p>
             <div className="title">
               <img src="./img/check.png" alt="" />
-              Pay when you're happy
+              Pay when you are happy
             </div>
             <p>
               Upfront quotes mean no surprises. Payments only get released when
@@ -72,25 +74,23 @@ const Home = () => {
               Fiverr Pro
             </div>
             <p>
-            Access top freelancers and professional business tools for any
-                project
+              Access top freelancers and professional business tools for any
+              project
             </p>
             <div className="title">
               <img src="./img/check.png" alt="" />
               Fiverr Certified
             </div>
-            <p>
-            Build your own branded marketplace of certified experts
-            </p>
+            <p>Build your own branded marketplace of certified experts</p>
             <div className="title">
               <img src="./img/check.png" alt="" />
               Fiverr Enterprise
             </div>
             <p>
-            Manage your freelance workforce and onboard additional talent
-                with an end-to-end SaaS solution
+              Manage your freelance workforce and onboard additional talent with
+              an end-to-end SaaS solution
             </p>
-            
+
             <button>Learn More</button>
           </div>
           <div className="item">
@@ -100,6 +100,15 @@ const Home = () => {
             />
           </div>
         </div>
+      </div>
+
+      <div className='another'>
+        <h2 className='h2in'>Inspiring work made on Fiverr</h2>
+        <Slide slidesToShow={4} arrowsScroll={4}>
+          {projects.map((project) => (
+            <ProjectCard key={project.id} item={project} />
+          ))}
+        </Slide>
       </div>
     </div>
   )
