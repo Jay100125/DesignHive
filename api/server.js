@@ -9,11 +9,10 @@ const orderRoute = require("./routes/order.route")
 const conversationRoute = require("./routes/conversation.route")
 const reviewRoute = require("./routes/review.route")
 const authRoute = require("./routes/auth.route")
-
+const cookieParser = require("cookie-parser")
 
 // mongoose.set('strictQuery', true)
 dotenv.config();
-const connect = async () => {
     try {
         mongoose.connect(process.env.MONGO)
         console.log("connected");
@@ -21,7 +20,9 @@ const connect = async () => {
     catch (error) {
         console.log(error)
     }
-}
+
+app.use(express.json())
+app.use(cookieParser())
 
 app.use("/api/users",userRoute)
 app.use("/api/auth",authRoute)
