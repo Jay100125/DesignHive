@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import './Navbar.scss'
 import { Link, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import newRequest from '../../utils/newRequest'
+
+
 const Navbar = () => {
+
   const [active, setActive] = useState(false)
   // for menu Option
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation();
+  const navigate = useNavigate()
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false)
@@ -19,10 +25,16 @@ const Navbar = () => {
     }
   }, [])
 
-  const currentUser = {
-    id: 1,
-    username: 'John wick',
-    isSeller: true,
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+
+  const handleLogout = async () => {
+    try {
+      await newRequest.post("/auth/logout")
+      localStorage.setItem("currentUser", null)
+      navigate("/")
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -40,11 +52,13 @@ const Navbar = () => {
           <span>English</span>
           <span>Sign in</span>
           {!currentUser?.isSeller && <span>Become a seller</span>}
-          {!currentUser && <button>Join</button>}
+          {!currentUser && <Link to='/register'>
+            <button>Join</button>
+          </Link>}
           {currentUser && (
             <div className="user" onClick={() => setOpen(!open)}>
               <img
-                src="https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                src={currentUser.img || "/img/pinterest.png"}
                 alt=""
               />
               <span>{currentUser?.username}</span>
@@ -67,7 +81,7 @@ const Navbar = () => {
                   <Link className="link" to="/messages">
                     Messages
                   </Link>
-                  <Link className="link">Log Out</Link>
+                  <Link className="link" onClick={handleLogout}>Log Out</Link>
                 </div>
               )}
             </div>

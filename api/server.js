@@ -10,27 +10,36 @@ const conversationRoute = require("./routes/conversation.route")
 const reviewRoute = require("./routes/review.route")
 const authRoute = require("./routes/auth.route")
 const cookieParser = require("cookie-parser")
-
+const cors = require("cors")
 // mongoose.set('strictQuery', true)
 dotenv.config();
-    try {
-        mongoose.connect(process.env.MONGO)
-        console.log("connected");
-    }
-    catch (error) {
-        console.log(error)
-    }
+try {
+    mongoose.connect(process.env.MONGO)
+    console.log("connected");
+}
+catch (error) {
+    console.log(error)
+}
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({origin:"http://localhost:5173", credentials:true}))
 
-app.use("/api/users",userRoute)
-app.use("/api/auth",authRoute)
-app.use("/api/gigs",gigRoute)
-app.use("/api/reviews",reviewRoute)
-app.use("/api/conversations",conversationRoute)
-app.use("/api/orders",orderRoute)
-app.use("/api/messages",messageRoute)
+
+app.use("/api/users", userRoute)
+app.use("/api/auth", authRoute)
+app.use("/api/gigs", gigRoute)
+app.use("/api/reviews", reviewRoute)
+app.use("/api/conversations", conversationRoute)
+app.use("/api/orders", orderRoute)
+app.use("/api/messages", messageRoute)
+
+app.use((err, req, res, next) => {
+    const errorStatus = err.status || 500
+    const errorMessage = err.message || "Something went wrong"
+
+    return res.status(errorStatus).send(errorMessage)
+})
 
 
 app.listen(8800, () => {
