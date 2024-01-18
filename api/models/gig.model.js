@@ -18,7 +18,7 @@ const GigSchema = new Schema({
         type: Number,
         default: 0,
     },
-    starNumber: {
+    star: {
         type: Number,
         required: true,
     },

@@ -5,9 +5,9 @@ const verifyToken = require("../middleware/jwt")
 const router = express.Router()
 
 router.post("/", verifyToken, createGig)
-router.delete("/", verifyToken, deleteGig)
-router.get("/", verifyToken, getGig)
-router.get("/", verifyToken, getGigs)
+router.delete("/:id", verifyToken, deleteGig)
+router.get("/single/:id", getGig);
+router.get("/", getGigs);
 
 
 

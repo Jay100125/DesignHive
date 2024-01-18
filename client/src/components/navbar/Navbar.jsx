@@ -50,28 +50,20 @@ const Navbar = () => {
           <span>Fiverr Bussiness</span>
           <span>Explorer</span>
           <span>English</span>
-          <span>Sign in</span>
-          {!currentUser?.isSeller && <span>Become a seller</span>}
-          {!currentUser && <Link to='/register'>
-            <button>Join</button>
-          </Link>}
-          {currentUser && (
+          {!currentUser?.isSeller && <span>Become a Seller</span>}
+          {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
-              <img
-                src={currentUser.img || "/img/pinterest.png"}
-                alt=""
-              />
+              <img src={currentUser.img || "/img/pinterest.png"} alt="" />
               <span>{currentUser?.username}</span>
               {open && (
                 <div className="options">
-                  {currentUser?.isSeller && (
-                    // if seller
+                  {currentUser.isSeller && (
                     <>
                       <Link className="link" to="/mygigs">
-                        Gig
+                        Gigs
                       </Link>
                       <Link className="link" to="/add">
-                        Add Gigs
+                        Add New Gig
                       </Link>
                     </>
                   )}
@@ -81,10 +73,19 @@ const Navbar = () => {
                   <Link className="link" to="/messages">
                     Messages
                   </Link>
-                  <Link className="link" onClick={handleLogout}>Log Out</Link>
+                  <Link className="link" onClick={handleLogout}>
+                    Logout
+                  </Link>
                 </div>
               )}
             </div>
+          ) : (
+            <>
+              <Link to="/login" className="link">Sign in</Link>
+              <Link className="link" to="/register">
+                <button>Join</button>
+              </Link>
+            </>
           )}
         </div>
       </div>
