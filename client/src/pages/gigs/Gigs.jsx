@@ -14,7 +14,7 @@ const Gigs = () => {
   const { search } = useLocation();
 
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ['repoData'],
+    queryKey: ['gigs'],
     queryFn: () =>
       newRequest(`/gigs${search}`).then((res) => {
         return res.data;
