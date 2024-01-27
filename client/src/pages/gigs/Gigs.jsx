@@ -14,12 +14,17 @@ const Gigs = () => {
   const { search } = useLocation();
 
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ['gigs'],
+    queryKey: ["gigs"],
     queryFn: () =>
-      newRequest(`/gigs${search}`).then((res) => {
-        return res.data;
-      })
-  })
+      newRequest
+        .get(
+          `/gigs${search}`
+        )
+        .then((res) => {
+          return res.data;
+        }),
+  });
+
 
   console.log(data);
   const reSort = (type) => {

@@ -34,31 +34,34 @@ const deleteGig = async (req, res, next) => {
 
 const getGig = async (req, res, next) => {
     try {
-        const gig = await Gig.findById(req.params.id)
-        if (!gig) next(createError(404, "Gig not found!"))
-        res.status(200).send(gig)
+        const gig = await Gig.findById(req.params.id);
+        if (!gig) next(createError(404, "Gig not found!"));
+        res.status(200).send(gig);
     } catch (err) {
-        next(err)
+        next(err);
     }
-}
+};
 
 const getGigs = async (req, res, next) => {
-
-    const q = req.query
+    const q = req.query;
     const filters = {
+        ...(q.userId && { userId: q.userId }),
         ...(q.cat && { cat: q.cat }),
-        ...(q.userId && { cat: q.userId }),
-        ...((q.min || q.max) && { price: { ...(q.min && { $gt: q.min }), ...(q.max && { $lt: q.max }) } }),
-        ...(q.search && { title: { $regex: q.search, $option: "i" } })
-    }
+        ...((q.min || q.max) && {
+            price: {
+                ...(q.min && { $gt: q.min }),
+                ...(q.max && { $lt: q.max }),
+            },
+        }),
+        ...(q.search && { title: { $regex: q.search, $options: "i" } }),
+    };
     try {
-        const gigs = await Gig.find(filters).sort({ [q.sort]: -1 })
-        res.status(200).send(gigs)
-
+        const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
+        res.status(200).send(gigs);
     } catch (err) {
-        next(err)
+        next(err);
     }
-}
+};
 
 module.exports = {
     createGig,

@@ -20,7 +20,7 @@ const GigSchema = new Schema({
     },
     star: {
         type: Number,
-        required: true,
+        default: 0,
     },
     cat: {
         type: String,
@@ -65,4 +65,4 @@ const GigSchema = new Schema({
 }, { timestamps: true })
 
 
-module.exports =  mongoose.model("Gig", GigSchema)
+module.exports = mongoose.model("Gig", GigSchema)
