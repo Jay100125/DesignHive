@@ -1,5 +1,6 @@
 import React from 'react'
 import './Footer.scss'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -71,10 +72,11 @@ const Footer = () => {
         <hr />
         <div className="bottom">
           <div className="left">
-            <h2>Fiverr</h2>
-            <span>© Fiverr International Ltd. 2023</span>
+            <h2>DesignHive</h2>
+            <span>© DesignHive International Ltd. 2023</span>
           </div>
           <div className="right">
+            <Link to="https://www.instagram.com/jaypatel_2301/">
             <div className="social">
               <img src="img/twitter.png" alt="" />
               <img src="img/facebook.png" alt="" />
@@ -82,6 +84,7 @@ const Footer = () => {
               <img src="img/pinterest.png" alt="" />
               <img src="img/linkedin.png" alt="" />
             </div>
+            </Link>
             <div className="link">
               <img src="img/language.png" alt="" />
               <span>English</span>

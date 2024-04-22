@@ -67,11 +67,11 @@ const Home = () => {
       <div className="features dark">
         <div className="container">
           <div className="item">
-            <h1>Fiverr Bussiness</h1>
+            <h1>DesignHive Bussiness</h1>
             <h2>Advanced solutions and professional talent for businesses</h2>
             <div className="title">
               <img src="./img/check.png" alt="" />
-              Fiverr Pro
+              DesignHive Pro
             </div>
             <p>
               Access top freelancers and professional business tools for any
@@ -79,12 +79,12 @@ const Home = () => {
             </p>
             <div className="title">
               <img src="./img/check.png" alt="" />
-              Fiverr Certified
+              DesignHive Certified
             </div>
             <p>Build your own branded marketplace of certified experts</p>
             <div className="title">
               <img src="./img/check.png" alt="" />
-              Fiverr Enterprise
+              DesignHive Enterprise
             </div>
             <p>
               Manage your freelance workforce and onboard additional talent with
@@ -95,7 +95,7 @@ const Home = () => {
           </div>
           <div className="item">
             <img
-              src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/51c35c7cecf75e6a5a0110d27909a2f5-1690202609364/EN.png"
+              src="./img/Fe.webp"
               alt=""
             />
           </div>
@@ -103,7 +103,7 @@ const Home = () => {
       </div>
 
       <div className='another'>
-        <h2 className='h2in'>Inspiring work made on Fiverr</h2>
+        <h2 className='h2in'>Inspiring work made on DesignHive</h2>
         <Slide slidesToShow={4} arrowsScroll={4}>
           {projects.map((project) => (
             <ProjectCard key={project.id} item={project} />

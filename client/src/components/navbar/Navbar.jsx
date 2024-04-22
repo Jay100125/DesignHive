@@ -1,53 +1,51 @@
-import React, { useEffect, useState } from 'react'
-import './Navbar.scss'
-import { Link, useLocation } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-import newRequest from '../../utils/newRequest'
-
+import React, { useEffect, useState } from "react";
+import "./Navbar.scss";
+import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import newRequest from "../../utils/newRequest";
 
 const Navbar = () => {
-
-  const [active, setActive] = useState(false)
+  const [active, setActive] = useState(false);
   // for menu Option
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const isActive = () => {
-    window.scrollY > 0 ? setActive(true) : setActive(false)
-  }
+    window.scrollY > 0 ? setActive(true) : setActive(false);
+  };
 
   useEffect(() => {
-    window.addEventListener('scroll', isActive)
+    window.addEventListener("scroll", isActive);
 
     return () => {
-      window.removeEventListener('scroll', isActive)
-    }
-  }, [])
+      window.removeEventListener("scroll", isActive);
+    };
+  }, []);
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const handleLogout = async () => {
     try {
-      await newRequest.post("/auth/logout")
-      localStorage.setItem("currentUser", null)
-      navigate("/")
+      await newRequest.post("/auth/logout");
+      localStorage.setItem("currentUser", null);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
-    <div className={active || pathname !== "/" ? 'navbar active' : 'navbar'}>
+    <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
           <Link to="/" className="link">
-            <span className="text">fiverr</span>
+            <span className="text">DesignHive</span>
           </Link>
           <span className="dot">.</span>
         </div>
         <div className="links">
-          <span>Fiverr Bussiness</span>
+          <span>DesignHive Bussiness</span>
           <span>Explorer</span>
           <span>English</span>
           {!currentUser?.isSeller && <span>Become a Seller</span>}
@@ -81,7 +79,9 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <Link to="/login" className="link">Sign in</Link>
+              <Link to="/login" className="link">
+                Sign in
+              </Link>
               <Link className="link" to="/register">
                 <button>Join</button>
               </Link>
@@ -100,32 +100,26 @@ const Navbar = () => {
               Video & Animation
             </Link>
             <Link className="link menuLink" to="/">
-              Writing & Translation
+              Product Photograpy
             </Link>
             <Link className="link menuLink" to="/">
               AI Services
             </Link>
             <Link className="link menuLink" to="/">
-              Digital Marketing
+              Video Animation
             </Link>
             <Link className="link menuLink" to="/">
-              Music & Audio
+              Logo Design
             </Link>
             <Link className="link menuLink" to="/">
-              Programming & Tech
-            </Link>
-            <Link className="link menuLink" to="/">
-              Business
-            </Link>
-            <Link className="link menuLink" to="/">
-              Lifestyle
+              Email Newsletter Design
             </Link>
           </div>
           <hr />
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

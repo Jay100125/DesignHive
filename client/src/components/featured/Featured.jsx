@@ -34,7 +34,7 @@ const Featured = () => {
         </div>
 
         <div className="right">
-            <img src="./img/man.png" alt="" />
+            <img src="" alt="" />
         </div>
       </div>
     </div>

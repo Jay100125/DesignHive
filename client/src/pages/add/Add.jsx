@@ -1,18 +1,17 @@
-import React, { useReducer, useState } from 'react'
-import "./Add.scss"
-import { INITIAL_STATE, gigReducer } from '../../reducers/gigReducer'
+import React, { useReducer, useState } from "react";
+import "./Add.scss";
+import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
 import upload from "../../utils/upload";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
 
 const Add = () => {
-
   const [singleFile, setSingleFile] = useState(undefined);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
 
-  const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE)
+  const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
 
   const handleChange = (e) => {
     dispatch({
@@ -63,7 +62,7 @@ const Add = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate(state);
-    // navigate("/mygigs")
+     navigate("/mygigs")
   };
 
   return (
@@ -168,5 +167,4 @@ const Add = () => {
   );
 };
 
-
-export default Add
+export default Add;
