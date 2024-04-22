@@ -37,6 +37,7 @@ const login = async (req, res, next) => {
         }, process.env.JWT_KEY)
 
         const { password, ...info } = user._doc
+        console.log("success");
         res.cookie("accessToken", token, { httpOnly: true }).status(200).send(info)
     } catch (error) {
         next(createError(500, "Error"))
