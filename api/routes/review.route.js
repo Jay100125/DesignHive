@@ -4,7 +4,8 @@ const { createReview, getReviews, deleteReview } = require("../controllers/revie
 
 const router = express.Router()
 
-router.post("/", verifyToken, createReview)
+// router.post("/", verifyToken, createReview)
+router.post("/", createReview)
 router.get("/:gigId", getReviews)
 router.delete("/:id", deleteReview)
 

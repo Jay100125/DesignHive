@@ -4,11 +4,14 @@ const { getConversations, createConversations, getSingleConversation, updateConv
 
 const router = express.Router()
 
-router.get("/", verifyToken, getConversations)
-router.post("/", verifyToken, createConversations)
-router.get("/single/:id", verifyToken, getSingleConversation)
-router.put("/:id", verifyToken, updateConversations)
+// router.get("/", verifyToken, getConversations)
+// router.post("/", verifyToken, createConversations)
+// router.get("/single/:id", verifyToken, getSingleConversation)
+// router.put("/:id", verifyToken, updateConversations)
 
-
+router.get("/", getConversations)
+router.post("/", createConversations)
+router.get("/single/:id", getSingleConversation)
+router.put("/:id", updateConversations)
 
 module.exports = router
