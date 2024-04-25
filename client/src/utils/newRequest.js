@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const newRequest = axios.create({
-  baseURL: "https://designhive.onrender.com/api",
+   baseURL: "https://designhive.onrender.com/api",
   withCredentials: true,
 });
 

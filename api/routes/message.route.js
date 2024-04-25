@@ -4,11 +4,11 @@ const { createMessage , getMessages} = require("../controllers/message.controlle
 
 const router = express.Router()
 
-// router.post("/", verifyToken, createMessage)
-// router.get("/:id", verifyToken, getMessages);
+router.post("/", verifyToken, createMessage)
+router.get("/:id", verifyToken, getMessages);
 
-router.post("/", createMessage)
-router.get("/:id", getMessages);
+// router.post("/", createMessage)
+// // router.get("/:id", getMessages);
 
 
 module.exports = router
